@@ -1,0 +1,176 @@
+---
+title: "Actividad Final"
+author: "Ingrese aquí el nombre de los integrantes del grupo"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: united
+    highlight: tango
+---
+
+<img src="logouccolor.jpg" style="position:absolute;top:0px;right:0px;" width="80" />
+
+---
+
+# Instrucciones
+
+Instale los siguientes paquetes: `babynames`, `nycflights13`, `maps` y carguelos (con `library`) junto a `tidyverse`. Resuelva las siguientes preguntas:
+
+```{r,message = FALSE,warning = FALSE}
+
+# Paquetes #
+library(tidyverse)
+library(babynames)
+library(nycflights13)
+library(maps)
+
+# Datasets #
+data("births")
+data("nycflights13")
+data("maps")
+```
+
+---
+
+# Problema 1
+
+Considere la tabla `births` paquete `babynames`. 
+
+(a) ¿Cuántas columnas y filas posee esta tabla?
+
+(b) Utilizando un gráfico adecuado, estudie los nacimientos por años en EE.UU. ¿En qué década se obtuvo la menor cantidad de nacimientos?
+
+## Solución
+
+(a) Observemos el `glimpse` de la base de datos:
+
+    ```{r}
+    glimpse(births)
+
+```
+
+    Luego, hay 109 filas y 2 columnas.
+
+
+(b) El siguiente código realiza el gráfico:
+
+    ```{r}
+ggplot(data = births) +
+  geom_line(aes(x = year, y = births, col = "darkblue")) + theme(plot.subtitle = element_text(vjust = 1), 
+    plot.caption = element_text(vjust = 1), 
+    axis.line = element_line(linetype = "solid"), 
+    panel.grid.major = element_line(linetype = "blank"), 
+    axis.text = element_text(size = 12), 
+    axis.text.x = element_text(size = 12), 
+    panel.background = element_rect(fill = NA, 
+        linetype = "solid"), legend.key = element_rect(fill = "white"), 
+    legend.background = element_rect(fill = NA, 
+        linetype = "solid"))
+```
+
+    Ahora bien, para obtener la década con menor nacimientos consideramos el siguiente código:
+    
+    ```{r}
+  births %>%
+    filter(year >= 1910) %>% 
+    mutate(decade = floor(year/10)*10) %>% 
+    group_by(decade) %>% 
+    summarise(nacimientos = sum(births)) %>%
+    filter(nacimientos == min(nacimientos))
+```
+    
+    Por lo tanto, la década con menos nacimientos es la década del 30.
+    
+---
+
+# Problema 2 
+
+Considere ahora la tabla `babynames` del paquete `babynames`. 
+
+(a) Realice el proceso necesario para obtener la misma estructura en cuanto a **columnas** que la tabla `births`, esto es, generar una nueva tabla que nos entregue el número de nacimientos por año.
+
+(b) Genere un data frame partiendo de la tabla `babynames` que contenga los nacimientos de las personas de género femenino con el nombre **Nala, Ariel** y **Elsa** desde los años 1980.
+
+(c) Con el data frame obtenido en la parte anterior, genere un gráfico que contenga la información de los nacimientos por año de cada uno de los nombres mencionados y mencionte una hipótesis/suposición al respecto de lo observado. *Hint:* Use `face_wrap(~ name, scales = "free_y")`.
+
+## Solución
+
+(a) El siguiente código realiza lo pedido:
+
+    ```{r}
+babynames %>% 
+    group_by(year) %>% 
+    summarise(births = n() ) -> births2
+  head(births2)
+```
+
+(b) El siguiente código realiza lo pedido:
+
+    ```{r}
+babynames %>%
+    filter(sex == "F", year >= 1980, name %in% c("Nala","Ariel","Elsa")) %>% 
+    arrange(name) -> births3
+  head(births3)
+```
+
+(c) El siguiente código resulta en el gráfico pedido
+
+    ```{r}
+ggplot(data = births3) + 
+   geom_line(aes(x = year, y = n)) +
+   facet_wrap( ~ name, ncol = 3, nrow = 1, scales = "free_y")
+```
+
+
+# Problema 3
+
+(a) Utilizando las tablas `airports` y `flights` del paquete `nycflights13` obtenga una tabla que contenga conteos de vuelos según su destino `dest` además de la longitud y latitud del aeropuerto(de destino).
+
+(b) Apoyándose del siguiente gráfico:
+
+    ```{r,message = FALSE}
+library(maps)
+us <- map_data("state")
+
+ggmap <- ggplot() +
+  geom_polygon(data = us, aes(long, lat, group = group), alpha = 0.25) +
+  coord_fixed() # esto es para mantener la razón 1:1
+
+ggmap
+    ```
+    
+    1. Agregue una capa de puntos ubicando los aeropuertos obtenidos de la pregunta anterior y usando además: `aes(size = la_cantidad_de_vuelos_a_dicho_aeropuerto)`.
+
+    2. A la izquierda del gráfico anterior se observan 2 puntos. Genere el/los pasos necesarios para seleccionarlos usando la tabla resultante de la pregunta 5 para identificar los nombres de dichos aeropuertos y responda: ¿Donde están? ¿Qué gracias tienen?
+    
+## Solución
+
+(a) El siguiente código obtiene lo pedido:
+
+    ```{r}
+  flights %>% 
+    left_join(airports, by = c("dest" = "faa")) %>% 
+    group_by(name) %>% 
+    summarise(nvuelos = n()) %>% 
+    left_join(airports, by = "name") %>% 
+    select(name,lat,lon,nvuelos) -> airports2
+  head(airports2)
+```
+
+(b) El siguiente código obtiene lo pedido:
+
+    ```{r, warning = FALSE}
+ggmap <- ggplot() +
+    geom_polygon(data = us, aes(long, lat, group = group), alpha = 0.25) + 
+    coord_fixed()
+
+  ggmap + 
+    geom_point(data = airports2, 
+               aes(x = lon, y = lat, size = nvuelos, color = "darkblue"), 
+               alpha = 0.7)
+
+  airports2 %>% 
+    filter(lon < -130)
+```
+
