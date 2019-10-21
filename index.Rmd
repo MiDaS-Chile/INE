@@ -14,4 +14,4 @@ output:
 
 <img src="logouccolor.jpg" style="position:absolute;top:0px;right:70px;" width="80" />
 
-- [Curso R](https://github.com/MiDaS-Chile/INE/blob/master/Curso%20R/index.html): Introducción a R.
+- [Curso R](Curso R/index.html): Introducción a R.

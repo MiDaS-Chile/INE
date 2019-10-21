@@ -25,4 +25,4 @@ source("setup.R")
 
 <img src="logouccolor.jpg" style="position:absolute;top:0px;right:70px;" width="80" />
 
-- [Clase](Curso-INE.html): Introducción a `R`.
+- [Clase](Curso R/index.html): Introducción a `R`.
