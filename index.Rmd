@@ -1,0 +1,28 @@
+---
+title: Computación Estadística con R
+author: false
+output:
+  html_document:
+    theme: lumen
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include=FALSE}
+library(highcharter)
+file.remove(dir("wdgts/", full.names = TRUE))
+
+knitr::opts_chunk$set(fig.path = "static/img/", echo = TRUE, cache = TRUE, message = FALSE)
+
+options(highcharter.theme =
+          hc_theme_smpl(chart = list(
+            backgroundColor = "transparent",
+            style = list(fontFamily = "Source Sans Pro"))
+            ))
+source("setup.R")
+
+```
+
+<img src="logouccolor.jpg" style="position:absolute;top:0px;right:70px;" width="80" />
+
+- [Curso R](https://github.com/MiDaS-Chile/INE/blob/master/Curso%20R/index.html): Introducción a R.
