@@ -486,12 +486,13 @@ document.getElementsByTagName('head')[0].appendChild(style);
     <div class="slides">
 
 
-<section><section id="introducción-a-r-midas" class="titleslide slide level1 center white" data-background="#75AADB"><h1><br><br>Introducción a R<br><small> <br><br> MiDaS</small></h1></section><section id="programa-del-curso" class="slide level2">
+<section><section id="curso-de-r-midas" class="titleslide slide level1 center white" data-background="#75AADB"><h1><br><br>Curso de R<br><small> <br><br> MiDaS</small></h1></section><section id="programa-del-curso" class="slide level2">
 <h2>Programa del Curso</h2>
 <ul>
 <li class="fragment">Introducción a <code>R</code>: Instalación, Interfaz y Operatoria básica.</li>
-<li class="fragment">Manipulación de bases de datos en <code>R</code>. -Análisis exploratorio y visualización en <code>R</code>.</li>
-<li class="fragment">Creación de reportes automatizados utilizando <code>Rmarkdown</code>.</li>
+<li class="fragment">Manipulación de bases de datos.</li>
+<li class="fragment">Análisis exploratorio y visualización.</li>
+<li class="fragment">Creación de reportes.</li>
 </ul>
 </section></section>
 <section><section id="introducción-a-r" class="titleslide slide level1 center white" data-background="#75AADB"><h1>Introducción a R</h1></section><section id="descarga-e-instalación" class="slide level2">
@@ -531,25 +532,15 @@ c &lt;-<span class="st"> &quot;Hola Mundo&quot;</span> <span class="co"># String
 <p>Para visualizar un objeto en consola, basta con escribir su nombre en ella, o bien ejecutar la línea deseada desde el editor.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a <span class="op">+</span><span class="st"> </span>b</code></pre></div>
 <pre><code>## [1] 29</code></pre>
-</section><section id="objetos-básicos-de-r-funciones" class="slide level2">
-<h2>Objetos básicos de R: Funciones</h2>
-<p>La principal herramienta para trabajar con los diferentes objetos en R son las funciones. Algunos ejemplos son:</p>
-<ul>
-<li class="fragment"><code>sum()</code></li>
-<li class="fragment"><code>mean()</code></li>
-<li class="fragment"><code>which()</code></li>
-<li class="fragment"><code>summary()</code></li>
-</ul>
-<p><strong>Importante:</strong> Si deseas saber como utilizar una función en específico puedes hacer <code>?nombre_funcion()</code>. También puedes buscar <a href="https://www.google.com">aquí</a>.</p>
 </section><section id="objetos-básicos-de-r-vectores" class="slide level2">
 <h2>Objetos básicos de R: Vectores</h2>
 <p>Para crear un vector se ocupa la función <strong>c()</strong>. Además podemos crear secuencias con la función <strong>seq()</strong>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">5</span>,b,<span class="dv">7</span>,<span class="dv">8</span>,<span class="op">-</span><span class="dv">8</span>,<span class="dv">20</span>,<span class="dv">7</span>,a)
-y &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">10</span>)
-<span class="kw">mean</span>(x)</code></pre></div>
-<pre><code>## [1] 8.5</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(y)</code></pre></div>
-<pre><code>## [1] 55</code></pre>
+x</code></pre></div>
+<pre><code>## [1]  5  9  7  8 -8 20  7 20</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">10</span>)
+y</code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 </section><section id="objetos-básicos-de-r-vectores-1" class="slide level2">
 <h2>Objetos básicos de R: Vectores</h2>
 <p>Podemos acceder a un elemento de un vector en una posición específica de un vector utilizando ‘<a href="#/section"></a>’. Algunos ejemplos:</p>
@@ -563,6 +554,23 @@ y &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</
 <pre><code>## [1] -8 20</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x[<span class="op">-</span><span class="dv">4</span>] <span class="co"># Vector original sin el elemento en la posición 4</span></code></pre></div>
 <pre><code>## [1]  5  9  7 -8 20  7 20</code></pre>
+</section><section id="objetos-básicos-de-r-funciones" class="slide level2">
+<h2>Objetos básicos de R: Funciones</h2>
+<p>La principal herramienta para trabajar con los diferentes objetos en R son las funciones. Algunos ejemplos son:</p>
+<ul>
+<li class="fragment"><code>sum()</code></li>
+<li class="fragment"><code>mean()</code></li>
+<li class="fragment"><code>which()</code></li>
+<li class="fragment"><code>summary()</code></li>
+</ul>
+</section><section class="slide level2">
+
+<p><strong>Importante:</strong> Si deseas saber como utilizar una función en específico puedes hacer <code>?nombre_funcion()</code>. También puedes buscar <a href="https://www.google.com">aquí</a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(x)</code></pre></div>
+<pre><code>## [1] 8.5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(y)</code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    1.00    3.25    5.50    5.50    7.75   10.00</code></pre>
 </section><section id="objetos-básicos-de-r-paquetes" class="slide level2">
 <h2>Objetos básicos de R: Paquetes</h2>
 <p>Los paquetes de R son el eje central de su funcionamiento. En cada uno de ellos existen funciones desarrolladas para resolver diferentes tipos de problemáticas. En esta ocasión instalaremos y cargaremos el paquete ‘Tidyverse’: <img src="Images/tidyverse.png" /></p>
@@ -630,7 +638,7 @@ data</code></pre></div>
 <li class="fragment">Cálcule la suma de la raíz de los números generados antes utilizando 2 métodos diferentes.</li>
 </ul>
 </section></section>
-<section><section id="importación-de-base-de-datos" class="titleslide slide level1 center white" data-background="#75AADB"><h1>Importación de Base de Datos</h1></section><section id="orígen-de-la-bd" class="slide level2">
+<section><section id="manejo-de-base-de-datos" class="titleslide slide level1 center white" data-background="#75AADB"><h1>Manejo de Base de Datos</h1></section><section id="orígen-de-la-bd" class="slide level2">
 <h2>Orígen de la BD</h2>
 <p>Los datos pueden provenir de muchas fuentes:</p>
 <ul>
@@ -702,8 +710,9 @@ numeros</code></pre></div>
 ## 14 oeste  Q2       250
 ## 15 oeste  Q3       300
 ## 16 oeste  Q4       170</code></pre>
-</section></section>
-<section><section id="manejo-de-bases-de-datos-utilizando-funciones-de-dplyr" class="titleslide slide level1 center white" data-background="#75AADB"><h1>Manejo de bases de datos utilizando funciones de dplyr</h1></section><section id="filter-seleccionar-filas" class="slide level2">
+</section><section id="ejemplo" class="slide level2">
+<h2>Ejemplo:</h2>
+</section><section id="filter-seleccionar-filas" class="slide level2">
 <h2>filter(): <em>Seleccionar filas</em></h2>
 <p>Permite seleccionar filas de cierta BD utilizando un criterio particular.</p>
 <p><img src="Images/filter.PNG" /></p>
@@ -979,7 +988,7 @@ table2s</code></pre></div>
 </ul>
 <p><strong>Nota:</strong> Cada ítem se realiza utilizando la base de datos resultante del ítem anterior</p>
 </section></section>
-<section><section id="análisis-exploratorio-y-visualización-en-r" class="titleslide slide level1"><h1>Análisis exploratorio y visualización en <code class="center white" data-background="#75AADB">R</code></h1></section><section id="definición-técnica" class="slide level2">
+<section><section id="análisis-exploratorio-y-visualización-en-de-datos" class="titleslide slide level1 center white" data-background="#75AADB"><h1>Análisis exploratorio y visualización en de datos</h1></section><section id="definición-técnica" class="slide level2">
 <h2>Definición técnica</h2>
 <p>Representación gráfica de datos <strong>codificando la información</strong> como: posición, tamaño, formas, colores</p>
 <p><img src="static/img/data-viz.jpg" width="60%"></p>
@@ -1019,12 +1028,12 @@ paises</code></pre></div>
 </section><section id="creando-un-gráfico" class="slide level2">
 <h2>Creando un gráfico :)</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> paises)</code></pre></div>
-<p><img src="static/img/unnamed-chunk-37-1.svg" width="960" /></p>
+<p><img src="static/img/unnamed-chunk-38-1.svg" width="960" /></p>
 </section><section id="mejorando-un-gráfico" class="slide level2">
 <h2>Mejorando un gráfico</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> paises) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">y =</span> gdpPercap))</code></pre></div>
-<p><img src="static/img/unnamed-chunk-38-1.svg" width="960" /></p>
+<p><img src="static/img/unnamed-chunk-39-1.svg" width="960" /></p>
 </section><section id="que-sucedió" class="slide level2">
 <h2>Que sucedió?</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> paises) <span class="op">+</span><span class="st"> </span>
@@ -1039,32 +1048,33 @@ paises</code></pre></div>
 <ul>
 <li class="fragment">Cada función <code>geom_algo</code> tiene un argumento de mapping que define cómo se asignan o se “mapean” las variables del conjunto de datos a propiedades visuales del <code>geom_algo</code></li>
 <li class="fragment">El argumento de mapping siempre aparece emparejado con <code>aes()</code>, y los argumentos <code>x</code> e <code>y</code> especifican qué variables asignar a los ejes <code>x</code> e <code>y</code></li>
+<li class="fragment">Para más gráficos, pueden visitar el siguiente <a href="http://www.sthda.com/english/wiki/be-awesome-in-ggplot2-a-practical-guide-to-be-highly-effective-r-software-and-data-visualization">link</a></li>
 </ul>
 </section><section class="slide level2">
 
 <p>Podemos setear las propiedades estéticas de tu geom manualmente:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> paises) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">y =</span> gdpPercap), <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>)</code></pre></div>
-<p><img src="static/img/unnamed-chunk-39-1.svg" width="960" /></p>
+<p><img src="static/img/unnamed-chunk-40-1.svg" width="960" /></p>
 </section><section class="slide level2">
 
 <p>En este caso un punto no solo puede poseer x e y, puede tener tamaño dado por una variable</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> paises) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">y =</span> gdpPercap, <span class="dt">size =</span> pop), <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>)</code></pre></div>
-<p><img src="static/img/unnamed-chunk-40-1.svg" width="960" /></p>
+<p><img src="static/img/unnamed-chunk-41-1.svg" width="960" /></p>
 </section><section class="slide level2">
 
 <p>Quizás en lugar de setear color fijo, podemos asignarlo segun una variable</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> paises) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">y =</span> gdpPercap, <span class="dt">size =</span> pop, <span class="dt">color =</span> continent))</code></pre></div>
-<p><img src="static/img/unnamed-chunk-41-1.svg" width="960" /></p>
+<p><img src="static/img/unnamed-chunk-42-1.svg" width="960" /></p>
 </section><section class="slide level2">
 
 <p>O realizar <em>facets</em>/paneles</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> paises) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">y =</span> gdpPercap, <span class="dt">size =</span> pop)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="kw">vars</span>(continent))</code></pre></div>
-<p><img src="static/img/unnamed-chunk-42-1.svg" width="960" /></p>
+<p><img src="static/img/unnamed-chunk-43-1.svg" width="960" /></p>
 </section><section id="paquete-útil-ggthemeassist" class="slide level2">
 <h2>Paquete Útil: <code>GGTHEMEASSIST</code></h2>
 <p>Para editar algunas características de los gráficos, se puede utilizar el adicional proveniente del paquete <code>ggThemeAssist</code>. Para ello:</p>
@@ -1074,13 +1084,40 @@ paises</code></pre></div>
 <li class="fragment">Hacer click en Addins &gt; ggplot Theme Assistant.</li>
 <li class="fragment">Editar todo lo deseado.</li>
 </ul>
-</section><section id="gráficos-en-la-misma-ventana" class="slide level2">
-<h2>Gráficos en la misma ventana</h2>
+</section><section id="gráficos-en-la-misma-ventana-rmisc" class="slide level2">
+<h2>Gráficos en la misma ventana: <code>Rmisc</code></h2>
+<p>Generamos 3 gráficos diferentes:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Ang &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> &#39;Angola&#39;</span>)
+
+p1&lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> Ang) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> gdpPercap))<span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;gdpPercap&quot;</span>)
+p2&lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> Ang) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> lifeExp))<span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;lifeExp&quot;</span>)
+p3&lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> Ang) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> pop))<span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;pop&quot;</span>)</code></pre></div>
+</section><section class="slide level2">
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Rmisc)
+<span class="kw">multiplot</span>(p1, p2, p3, <span class="dt">cols=</span><span class="dv">1</span>)</code></pre></div>
+<p><img src="static/img/unnamed-chunk-45-1.svg" width="960" /></p>
+</section><section class="slide level2">
+
+<p>Ahora poniéndolo todo junto:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> Ang) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> <span class="kw">scale</span>(gdpPercap),<span class="dt">colour =</span> <span class="st">&quot;gdpPercap&quot;</span>))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> <span class="kw">scale</span>(lifeExp),<span class="dt">colour =</span> <span class="st">&quot;lifeExp&quot;</span>))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> <span class="kw">scale</span>(pop),<span class="dt">colour =</span> <span class="st">&quot;pop&quot;</span>))<span class="op">+</span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;&#39;</span>)</code></pre></div>
+<p><img src="static/img/unnamed-chunk-46-1.svg" width="960" /></p>
 </section><section id="actividad-iii" class="slide level2">
 <h2>Actividad III</h2>
-<p>Abra el archivo <code>Actividad_3.pdf</code> y responda las preguntas en él.</p>
+<p>Abra el archivo <code>Actividad-3.pdf</code> y responda las preguntas en él.</p>
 </section></section>
-<section><section id="introducción-a-r-markdown" class="titleslide slide level1 center white" data-background="#75AADB"><h1>Introducción a R Markdown</h1></section><section id="section" class="slide level2" data-background-video="video1.mp4">
+<section><section id="generación-de-reportes" class="titleslide slide level1 center white" data-background="#75AADB"><h1>Generación de Reportes</h1></section><section id="section" class="slide level2" data-background-video="video1.mp4">
 <h2></h2>
 </section><section id="qué-es-r-markdown" class="slide level2">
 <h2>¿Qué es R Markdown?</h2>
@@ -1169,7 +1206,7 @@ paises</code></pre></div>
 <p>Para mayor información de todo esto, ver el siguiente <a href="https://bookdown.org/yihui/rmarkdown/">link</a></p>
 </section><section id="actividad-iv-parte-i-basados-en-datacamp" class="slide level2">
 <h2>Actividad IV: parte I (Basados en <a href="https://www.datacamp.com/projects/139">DataCamp</a> )</h2>
-<p>Convertir los títulos de las secciones de estos párrafos en encabezados utilizando la sintaxis apropiada, usando diferentes niveles de encabezado para las secciones y subsecciones:</p>
+<p>Convertir los títulos de las secciones de estos párrafos en encabezados, utilizando la sintaxis apropiada, además de diferentes niveles de encabezado para las secciones y subsecciones:</p>
 <ul>
 <li class="fragment">Secciones (encabezados de primer nivel): Introducción, La base de datos, Computando el nivel de dificultad, Computando la incertidumbre, Una métrica final.</li>
 <li class="fragment">Subsecciones (encabezados de segundo nivel): Chequeando la base de datos, Graficando el perfil de dificultad, Detectando niveles difíciles, Mostrando incertidumbre</li>

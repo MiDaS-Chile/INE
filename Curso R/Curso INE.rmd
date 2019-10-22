@@ -28,14 +28,14 @@ knitr::opts_chunk$set(fig.path = "static/img/", echo = TRUE, cache = TRUE)
 source("setup.R")
 ```
 
-# <br><br>Introducción a R<br><small> <br><br> MiDaS</small>{ .center .white data-background="#75AADB" }
+# <br><br>Curso de R<br><small> <br><br> MiDaS</small>{ .center .white data-background="#75AADB" }
 
 ## Programa del Curso
 
 - Introducción a `R`: Instalación, Interfaz y Operatoria básica.
-- Manipulación de bases de datos en `R`.
--Análisis exploratorio y visualización en `R`.
-- Creación de reportes automatizados utilizando `Rmarkdown`.
+- Manipulación de bases de datos.
+- Análisis exploratorio y visualización.
+- Creación de reportes.
 
 # Introducción a R{ .center .white data-background="#75AADB" }
 
@@ -88,25 +88,14 @@ Para visualizar un objeto en consola, basta con escribir su nombre en ella, o bi
 a + b
 ```
 
-## Objetos básicos de R: Funciones
-
-La principal herramienta para trabajar con los diferentes objetos en R son las funciones. Algunos ejemplos son:
-  
-- `sum()`
-- `mean()`
-- `which()`
-- `summary()`
-
-**Importante:** Si deseas saber como utilizar una función en específico puedes hacer `?nombre_funcion()`. También puedes buscar [aquí](https://www.google.com).
-
 ## Objetos básicos de R: Vectores
 
 Para crear un vector se ocupa la función **c()**. Además podemos crear secuencias con la función **seq()**.
 ```{r}
 x <- c(5,b,7,8,-8,20,7,a)
+x
 y <- seq(1,10)
-mean(x)
-sum(y)
+y
 ```
 
 ## Objetos básicos de R: Vectores
@@ -125,6 +114,25 @@ x[c(5,8)] # Elementos en la posición 5 y 8
 x[-4] # Vector original sin el elemento en la posición 4
 ```
 
+## Objetos básicos de R: Funciones
+
+La principal herramienta para trabajar con los diferentes objetos en R son las funciones. Algunos ejemplos son:
+  
+- `sum()`
+- `mean()`
+- `which()`
+- `summary()`
+
+----
+
+**Importante:** Si deseas saber como utilizar una función en específico puedes hacer `?nombre_funcion()`. También puedes buscar [aquí](https://www.google.com).
+
+```{r}
+mean(x)
+summary(y)
+```
+
+
 ## Objetos básicos de R: Paquetes
 
 Los paquetes de R son el eje central de su funcionamiento. En cada uno de ellos existen funciones desarrolladas para resolver diferentes tipos de problemáticas. En esta ocasión instalaremos y cargaremos el paquete 'Tidyverse':
@@ -134,8 +142,8 @@ Los paquetes de R son el eje central de su funcionamiento. En cada uno de ellos 
 
 Para utilizar un paquete en R hay que realizar las siguientes operaciones:
   
-  - Instalar el paquete, **install.packages('nombre_paquete').** 
-  - Cargar el paquete,  **library('nombre_paquete')**.
+- Instalar el paquete, **install.packages('nombre_paquete').** 
+- Cargar el paquete,  **library('nombre_paquete')**.
 
 ```{r, message = FALSE}
 # install.packages('tidyverse')
@@ -187,7 +195,7 @@ log(mean(x))
 - Del vector anterior, obtenga los impares número 1, 10, 100 y 1000.
 - Cálcule la suma de la raíz de los números generados antes utilizando 2 métodos diferentes.
 
-# Importación de Base de Datos{ .center .white data-background="#75AADB" }
+# Manejo de Base de Datos{ .center .white data-background="#75AADB" }
 
 ## Orígen de la BD
 
@@ -240,7 +248,8 @@ numeros <- read_excel('Datasets/numeros.xlsx')
 numeros
 ```
 
-# Manejo de bases de datos utilizando funciones de dplyr{ .center .white data-background="#75AADB" }
+## Ejemplo:
+
 
 ## filter(): *Seleccionar filas*
 
@@ -460,7 +469,7 @@ table2s
 
 **Nota:** Cada ítem se realiza utilizando la base de datos resultante del ítem anterior
 
-# Análisis exploratorio y visualización en `R`{ .center .white data-background="#75AADB" }
+# Análisis exploratorio y visualización en de datos { .center .white data-background="#75AADB"}
 
 ## Definición técnica
   
@@ -523,6 +532,7 @@ ggplot(data = paises) +
 
 - Cada función `geom_algo` tiene un argumento de mapping que define cómo se asignan o se “mapean” las variables del conjunto de datos a propiedades visuales del `geom_algo`
 -  El argumento de mapping siempre aparece emparejado con `aes()`, y los argumentos `x` e `y` especifican qué variables asignar a los ejes `x` e `y`
+- Para más gráficos, pueden visitar el siguiente [link](http://www.sthda.com/english/wiki/be-awesome-in-ggplot2-a-practical-guide-to-be-highly-effective-r-software-and-data-visualization)
 
 ----
   
@@ -571,13 +581,52 @@ Para editar algunas características de los gráficos, se puede utilizar el adic
 - Hacer click en Addins > ggplot Theme Assistant.
 - Editar todo lo deseado.
 
-## Gráficos en la misma ventana
+## Gráficos en la misma ventana: `Rmisc`
+
+Generamos 3 gráficos diferentes:
+
+```{r, echo=TRUE,  fig.height = 4}
+Ang <- gapminder %>% 
+  filter(country == 'Angola')
+
+p1<- ggplot(data = Ang) + 
+  geom_line(mapping = aes(x = year, y = gdpPercap))+
+  ggtitle("gdpPercap")
+p2<- ggplot(data = Ang) + 
+  geom_line(mapping = aes(x = year, y = lifeExp))+
+  ggtitle("lifeExp")
+p3<- ggplot(data = Ang) + 
+  geom_line(mapping = aes(x = year, y = pop))+
+  ggtitle("pop")
+```
+
+----
+
+```{r}
+library(Rmisc)
+multiplot(p1, p2, p3, cols=1)
+
+```
+
+----
+
+Ahora poniéndolo todo junto:
+  
+```{r, echo=TRUE,  fig.height = 4}
+
+ggplot(data = Ang) + 
+  geom_line(mapping = aes(x = year, y = scale(gdpPercap),colour = "gdpPercap"))+
+  geom_line(mapping = aes(x = year, y = scale(lifeExp),colour = "lifeExp"))+
+  geom_line(mapping = aes(x = year, y = scale(pop),colour = "pop"))+
+  ylab('')
+
+```
 
 ## Actividad III
 
-Abra el archivo `Actividad_3.pdf` y responda las preguntas en él.
+Abra el archivo `Actividad-3.pdf` y responda las preguntas en él.
 
-# Introducción a R Markdown{ .center .white data-background="#75AADB" }
+# Generación de Reportes{ .center .white data-background="#75AADB" }
 
 ## {data-background-video="video1.mp4"}
 
@@ -648,7 +697,7 @@ Para mayor información de todo esto, ver el siguiente [link](https://bookdown.o
 
 ## Actividad IV: parte I (Basados en [DataCamp](https://www.datacamp.com/projects/139) )
 
-Convertir los títulos de las secciones de estos párrafos en encabezados utilizando la sintaxis apropiada, usando diferentes niveles de encabezado para las secciones y subsecciones:
+Convertir los títulos de las secciones de estos párrafos en encabezados, utilizando la sintaxis apropiada, además de diferentes niveles de encabezado para las secciones y subsecciones:
 
 - Secciones (encabezados de primer nivel): Introducción, La base de datos, Computando el nivel de dificultad, Computando la incertidumbre, Una métrica final.
 - Subsecciones (encabezados de segundo nivel): Chequeando la base de datos, Graficando el perfil de dificultad, Detectando niveles difíciles, Mostrando incertidumbre
