@@ -18,8 +18,8 @@ En este [Curso](https://midas-chile.github.io/INE/Curso%20R/Curso-INE.html#/curs
 - [Introducción a `R`.](https://midas-chile.github.io/INE/Curso%20R/Curso-INE.html#/introduccin-a-r)
 - [Manejo de base de datos.](https://midas-chile.github.io/INE/Curso%20R/Curso-INE.html#/manejo-de-base-de-datos)
 - [Análisis exploratorio y visualización de datos.](https://midas-chile.github.io/INE/Curso%20R/Curso-INE.html#/anlisis-exploratorio-y-visualizacin-en-de-datos)
-- [Generación de reportes](https://midas-chile.github.io/INE/Curso%20R/Curso-INE.html#/anlisis-exploratorio-y-visualizacin-en-de-datos)
-- [Repliación de un extracto del Boletín](https://midas-chile.github.io/INE/Curso R/Ejercicio Final/Reporte_INE.html#)
+- [Generación de reportes](https://midas-chile.github.io/INE/Curso%20R/Curso-INE.html#/generacin-de-reportes)
+- [Replicación de extracto de Boletín Empleo Trimestral](https://midas-chile.github.io/INE/Curso R/Ejercicio Final/Reporte_INE.html#)
   
 
 
