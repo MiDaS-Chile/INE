@@ -1,7 +1,7 @@
 ---
 output:
   prettydoc::html_pretty:
-    theme: leonids
+    theme: cayman
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -12,4 +12,6 @@ library(prettydoc)
 knitr::include_graphics('Logo_midas.png')
 ```
 
-- [Curso de R](https://midas-chile.github.io/INE/Curso%20R/Curso-INE.html): Introducción a R.
+# MiDaS - INE
+
+- [Curso de R](https://midas-chile.github.io/INE/Curso R/index2.html)

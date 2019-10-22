@@ -12,7 +12,7 @@ library(prettydoc)
 knitr::include_graphics('Logo_midas.png')
 ```
 
-En este [Curso](https://midas-chile.github.io/INE/Curso%20R/Curso-INE.html#/curso-de-r-midas) abordaremos las herramientas básicas para utilizar el software `R` como una herramienta de manipulación y visualización de base de datos a través del paquete `tidyverse`. Además, se realizará una introducción a la creación de reportes automatizables mediante el estudio del paquete `Rmarkdown`. Se finalizará el curso replicando en `R` un extracto del [Boletín Estadístico del Empleo Trimestral del INE](http://www.ine.cl/docs/default-source/boletines/empleo/2019/espanol/bolet%C3%ADn-empleo-nacional-trimestre-m%C3%B3vil-junio-agosto-2019.pdf?sfvrsn=e2c95fd2_5).
+En este [Curso](https://midas-chile.github.io/INE/Curso%20R/Curso-INE.html#/curso-de-r-midas) abordaremos las herramientas básicas para utilizar el software `R` como una herramienta de manipulación y visualización de base de datos a través del paquete `tidyverse`. Además, se realizará una introducción a la creación de reportes automatizables mediante el estudio del paquete `Rmarkdown`. Se finalizará el curso replicando en `R` un extracto del [Boletín Estadístico del Empleo Trimestral del INE](https://github.com/MiDaS-Chile/INE/blob/master/Curso%20R/Ejercicio%20Final/boletin.pdf).
 
 # Links
 
