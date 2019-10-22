@@ -4,9 +4,6 @@ output:
     theme: cayman
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-<br>
 ```{r logo, echo=FALSE, out.width='50%'}
 knitr::include_graphics('Logo_midas.png')
 ```
