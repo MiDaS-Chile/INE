@@ -8,7 +8,6 @@ output:
 
 <br>
 ```{r logo, echo=FALSE, out.width='50%'}
-library(prettydoc)
 knitr::include_graphics('Logo_midas.png')
 ```
 
