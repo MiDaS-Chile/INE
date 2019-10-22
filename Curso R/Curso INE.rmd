@@ -468,7 +468,7 @@ table2s
 
 **Nota:** Cada ítem se realiza utilizando la base de datos resultante del ítem anterior
 
-# Análisis exploratorio y visualización de datos { .center .white data-background="#75AADB"}
+# Analisis exploratorio y visualizacion de datos { .center .white data-background="#75AADB"}
 
 ## Definición técnica
   
@@ -625,7 +625,7 @@ ggplot(data = Ang) +
 
 Abra el archivo `Actividad-3.pdf` y responda las preguntas en él.
 
-# Generación de Reportes{ .center .white data-background="#75AADB" }
+# Generacion de Reportes Automatizables{ .center .white data-background="#75AADB" }
 
 ## {data-background-video="video1.mp4"}
 
