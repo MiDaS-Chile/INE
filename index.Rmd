@@ -1,17 +1,15 @@
 ---
-title: Cursos MiDaS - INE
-author: false
 output:
-  html_document:
-    theme: lumen
+  prettydoc::html_pretty:
+    theme: leonids
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r setup, include=FALSE}
-
+<br>
+```{r logo, echo=FALSE, out.width='50%'}
+library(prettydoc)
+knitr::include_graphics('Logo_midas.png')
 ```
 
-<img src="logouccolor.jpg" style="position:absolute;top:0px;right:70px;" width="80" />
-
-- [Curso R](https://midas-chile.github.io/INE/Curso%20R/Curso-INE.html): Introducción a R.
+- [Curso de R](https://midas-chile.github.io/INE/Curso%20R/Curso-INE.html): Introducción a R.

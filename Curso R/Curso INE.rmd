@@ -23,7 +23,6 @@ editor_options:
 ---
 
 ```{r setup, include=FALSE}
-setwd('G:/Mi unidad/Universidad/Cursos/Curso Congreso/Intro_R_JNE2019')
 knitr::opts_chunk$set(fig.path = "static/img/", echo = TRUE, cache = TRUE)
 source("setup.R")
 ```
@@ -469,7 +468,7 @@ table2s
 
 **Nota:** Cada ítem se realiza utilizando la base de datos resultante del ítem anterior
 
-# Análisis exploratorio y visualización en de datos { .center .white data-background="#75AADB"}
+# Análisis exploratorio y visualización de datos { .center .white data-background="#75AADB"}
 
 ## Definición técnica
   
