@@ -486,16 +486,8 @@ document.getElementsByTagName('head')[0].appendChild(style);
     <div class="slides">
 
 
-<section><section id="curso-de-r-midas" class="titleslide slide level1 center white" data-background="#75AADB"><h1><br><br>Curso de R<br><small> <br><br> MiDaS</small></h1></section><section id="programa-del-curso" class="slide level2">
-<h2>Programa del Curso</h2>
-<ul>
-<li class="fragment">Introducción a <code>R</code>: Instalación, Interfaz y Operatoria básica.</li>
-<li class="fragment">Manipulación de bases de datos.</li>
-<li class="fragment">Análisis exploratorio y visualización.</li>
-<li class="fragment">Creación de reportes.</li>
-</ul>
-</section></section>
-<section><section id="introducción-a-r" class="titleslide slide level1 center white" data-background="#75AADB"><h1>Introducción a R</h1></section><section id="descarga-e-instalación" class="slide level2">
+<section><section id="curso-de-r-midas" class="titleslide slide level1 center white" data-background="#75AADB"><h1><br><br>Curso de R<br><small> <br><br> MiDaS</small></h1></section></section>
+<section><section id="introduccion-a-r" class="titleslide slide level1 center white" data-background="#75AADB"><h1>Introduccion a R</h1></section><section id="descarga-e-instalación" class="slide level2">
 <h2>Descarga e Instalación</h2>
 <ul>
 <li class="fragment">R, el software computacional, se descarga desde el <a href="http://cran.r-project.org">CRAN</a>. Debes elegir la opción que corresponda con tu sistema operativo.</li>
@@ -710,8 +702,20 @@ numeros</code></pre></div>
 ## 14 oeste  Q2       250
 ## 15 oeste  Q3       300
 ## 16 oeste  Q4       170</code></pre>
-</section><section id="ejemplo" class="slide level2">
-<h2>Ejemplo:</h2>
+</section><section id="ejemplo-submuestra.dta" class="slide level2">
+<h2>Ejemplo: submuestra.dta</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(haven)
+submuestra &lt;-<span class="st"> </span><span class="kw">read_dta</span>(<span class="st">&quot;Datasets/submuestra ENE 2018 07 JJA.dta&quot;</span>)
+<span class="kw">head</span>(submuestra)</code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##    fact           activ                          b1             cae_general
+##   &lt;dbl&gt;       &lt;dbl+lbl&gt;                   &lt;dbl+lbl&gt;               &lt;dbl+lbl&gt;
+## 1  18.9 3 [Fuera de la~ NA                          9 [Inactivos que no bu~
+## 2  23.6 3 [Fuera de la~ NA                          9 [Inactivos que no bu~
+## 3  18.9 1 [Ocupados/as]  5 [Trabajadores de los se~ 1 [Ocupado tradicional]
+## 4  18.9 2 [Desocupados~ NA                          4 [Cesante]            
+## 5  23.6 2 [Desocupados~ NA                          4 [Cesante]            
+## 6  18.9 1 [Ocupados/as]  3 [Técnicos y profesional~ 1 [Ocupado tradicional]</code></pre>
 </section><section id="filter-seleccionar-filas" class="slide level2">
 <h2>filter(): <em>Seleccionar filas</em></h2>
 <p>Permite seleccionar filas de cierta BD utilizando un criterio particular.</p>
@@ -784,8 +788,8 @@ numeros</code></pre></div>
 ## 4  Arlene   50     1010 1999-06-11
 ## 5 Allison   65     1005 1995-06-03
 ## 6 Alberto  110     1007 2000-08-03</code></pre>
-</section><section id="arrange-código-de-mayor-a-menor." class="slide level2">
-<h2>arrange(): <em>Código de mayor a menor.</em></h2>
+</section><section id="arrange-código-de-mayor-a-menor" class="slide level2">
+<h2>arrange(): <em>Código de mayor a menor</em></h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">storms <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(wind))</code></pre></div>
 <pre><code>##     storm wind pressure       date
@@ -943,8 +947,8 @@ artist4</code></pre></div>
 ## 2 Come Together       John  guitar
 ## 3 Hello, Goodbye      Paul  bass  
 ## 4 Peggy Sue           Buddy &lt;NA&gt;</code></pre>
-</section><section id="gather-recolectar" class="slide level2">
-<h2>gather: <em>Recolectar</em></h2>
+</section><section id="gather-reunir-columnas" class="slide level2">
+<h2>gather: <em>Reunir columnas</em></h2>
 <p>Coloca nombres de columnas en una variable (columna) <strong>key</strong>, recolectando los valores (<strong>value</strong>) de las columnas en un <strong>sola</strong> columna</p>
 <p><img src="Images/gather.png" /></p>
 </section><section id="gather-código" class="slide level2">
@@ -1028,12 +1032,12 @@ paises</code></pre></div>
 </section><section id="creando-un-gráfico" class="slide level2">
 <h2>Creando un gráfico :)</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> paises)</code></pre></div>
-<p><img src="static/img/unnamed-chunk-38-1.svg" width="960" /></p>
+<p><img src="static/img/unnamed-chunk-39-1.svg" width="960" /></p>
 </section><section id="mejorando-un-gráfico" class="slide level2">
 <h2>Mejorando un gráfico</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> paises) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">y =</span> gdpPercap))</code></pre></div>
-<p><img src="static/img/unnamed-chunk-39-1.svg" width="960" /></p>
+<p><img src="static/img/unnamed-chunk-40-1.svg" width="960" /></p>
 </section><section id="que-sucedió" class="slide level2">
 <h2>Que sucedió?</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> paises) <span class="op">+</span><span class="st"> </span>
@@ -1055,26 +1059,26 @@ paises</code></pre></div>
 <p>Podemos setear las propiedades estéticas de tu geom manualmente:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> paises) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">y =</span> gdpPercap), <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>)</code></pre></div>
-<p><img src="static/img/unnamed-chunk-40-1.svg" width="960" /></p>
+<p><img src="static/img/unnamed-chunk-41-1.svg" width="960" /></p>
 </section><section class="slide level2">
 
 <p>En este caso un punto no solo puede poseer x e y, puede tener tamaño dado por una variable</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> paises) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">y =</span> gdpPercap, <span class="dt">size =</span> pop), <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>)</code></pre></div>
-<p><img src="static/img/unnamed-chunk-41-1.svg" width="960" /></p>
+<p><img src="static/img/unnamed-chunk-42-1.svg" width="960" /></p>
 </section><section class="slide level2">
 
 <p>Quizás en lugar de setear color fijo, podemos asignarlo segun una variable</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> paises) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">y =</span> gdpPercap, <span class="dt">size =</span> pop, <span class="dt">color =</span> continent))</code></pre></div>
-<p><img src="static/img/unnamed-chunk-42-1.svg" width="960" /></p>
+<p><img src="static/img/unnamed-chunk-43-1.svg" width="960" /></p>
 </section><section class="slide level2">
 
 <p>O realizar <em>facets</em>/paneles</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> paises) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> lifeExp, <span class="dt">y =</span> gdpPercap, <span class="dt">size =</span> pop)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="kw">vars</span>(continent))</code></pre></div>
-<p><img src="static/img/unnamed-chunk-43-1.svg" width="960" /></p>
+<p><img src="static/img/unnamed-chunk-44-1.svg" width="960" /></p>
 </section><section id="paquete-útil-ggthemeassist" class="slide level2">
 <h2>Paquete Útil: <code>GGTHEMEASSIST</code></h2>
 <p>Para editar algunas características de los gráficos, se puede utilizar el adicional proveniente del paquete <code>ggThemeAssist</code>. Para ello:</p>
@@ -1103,7 +1107,7 @@ p3&lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">
 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Rmisc)
 <span class="kw">multiplot</span>(p1, p2, p3, <span class="dt">cols=</span><span class="dv">1</span>)</code></pre></div>
-<p><img src="static/img/unnamed-chunk-45-1.svg" width="960" /></p>
+<p><img src="static/img/unnamed-chunk-46-1.svg" width="960" /></p>
 </section><section class="slide level2">
 
 <p>Ahora poniéndolo todo junto:</p>
@@ -1112,7 +1116,7 @@ p3&lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">
 <span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> <span class="kw">scale</span>(lifeExp),<span class="dt">colour =</span> <span class="st">&quot;lifeExp&quot;</span>))<span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> <span class="kw">scale</span>(pop),<span class="dt">colour =</span> <span class="st">&quot;pop&quot;</span>))<span class="op">+</span>
 <span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;&#39;</span>)</code></pre></div>
-<p><img src="static/img/unnamed-chunk-46-1.svg" width="960" /></p>
+<p><img src="static/img/unnamed-chunk-47-1.svg" width="960" /></p>
 </section><section id="actividad-iii" class="slide level2">
 <h2>Actividad III</h2>
 <p>Abra el archivo <code>Actividad-3.pdf</code> y responda las preguntas en él.</p>
@@ -1235,7 +1239,122 @@ p3&lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">
 <li class="fragment">¿Qué pasa si agrego la opción ‘code_folding: show’?</li>
 </ul>
 </section></section>
-<section><section id="actividad-final" class="titleslide slide level1"><h1>Actividad Final</h1></section></section>
+<section><section id="ejemplo-boletín-empleo-trimestral" class="titleslide slide level1 center white" data-background="#75AADB"><h1>Ejemplo: Boletín Empleo Trimestral</h1></section><section id="descripción" class="slide level2">
+<h2>Descripción</h2>
+<ul>
+<li class="fragment">El INE publica mensualmente un Boletín de Empleo Trimestral.</li>
+<li class="fragment">En la página 3 de dicho informe, se presentan cifras relacionadas con la evolución de los ocupados según grupo ocupacional (CIUO.08). Específicamente:
+<ol type="1">
+<li class="fragment">La participación de los ocupados según grupo ocupacional.</li>
+<li class="fragment">El crecimiento porcentual del número de ocupados segùn grupo ocupacional.</li>
+</ol></li>
+<li class="fragment">El primer grupo de cifras se presenta como un gráfico, pero el grupo de cifras se presentan dentro del texto.</li>
+<li class="fragment">En este ejericicio final, explicaremos cómo reproducir este extracto del Boletín usando RMarkdown.</li>
+</ul>
+</section><section id="crecimiento-porcentual-de-los-ocupados" class="slide level2">
+<h2>Crecimiento porcentual de los ocupados</h2>
+<p>Cargamos los datos (también cargaremos datos del 2018):</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ene_jja &lt;-<span class="st"> </span><span class="kw">list</span>(
+  <span class="st">&quot;2018&quot;</span> =<span class="st"> </span>haven<span class="op">::</span><span class="kw">read_dta</span>(<span class="st">&quot;Datasets/submuestra ENE 2018 07 JJA.dta&quot;</span>),
+  <span class="st">&quot;2019&quot;</span> =<span class="st"> </span>haven<span class="op">::</span><span class="kw">read_dta</span>(<span class="st">&quot;Datasets/submuestra ENE 2019 07 JJA.dta&quot;</span>)
+)</code></pre></div>
+<p>Estimamos el número de ocupados, para el trimestre junio-agosto 2018</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ocup_<span class="dv">2018</span> &lt;-
+<span class="st">  </span>ene_jja[[<span class="st">&quot;2018&quot;</span>]] <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(activ <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">sum</span>(fact)) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">pull</span>(<span class="dv">1</span>)</code></pre></div>
+</section><section class="slide level2">
+
+<p>Estimamos el número de ocupados, para el trimestre junio-agosto 2019</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ocup_<span class="dv">2019</span> &lt;-
+<span class="st">  </span>ene_jja[[<span class="st">&quot;2019&quot;</span>]] <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(activ <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">sum</span>(fact)) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">pull</span>(<span class="dv">1</span>)</code></pre></div>
+<p>Estimamos la variación porcentual en 12 meses del número de ocupados</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ocup_vp &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="dv">100</span> <span class="op">*</span><span class="st"> </span>(ocup_<span class="dv">2019</span> <span class="op">-</span><span class="st"> </span>ocup_<span class="dv">2018</span>) <span class="op">/</span><span class="st"> </span>ocup_<span class="dv">2019</span>, <span class="dv">1</span>)</code></pre></div>
+</section><section id="variación-en-12-meses-de-los-ocupados-por-grupo-de-ocupación" class="slide level2">
+<h2>Variación en 12 meses de los ocupados por grupo de ocupación</h2>
+<p>Estima el número de ocupados, según grupo ocupacional (CIUO 08.cl) para el trimestre junio-agosto 2018</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tbl1_<span class="dv">2018</span> &lt;-
+<span class="st">  </span>ene_jja[[<span class="st">&quot;2018&quot;</span>]] <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(activ, b1, fact) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(activ <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(b1) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">sum</span>(fact))</code></pre></div>
+</section><section id="variación-en-12-meses-de-los-ocupados-por-grupo-de-ocupación-1" class="slide level2">
+<h2>Variación en 12 meses de los ocupados por grupo de ocupación</h2>
+<p>Estima el número de ocupados, según grupo ocupacional (CIUO 08.cl) para el trimestre junio-agosto 2019</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tbl1_<span class="dv">2019</span> &lt;-
+<span class="st">  </span>ene_jja[[<span class="st">&quot;2019&quot;</span>]] <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(activ, b1, fact) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(activ <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(b1) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">sum</span>(fact))</code></pre></div>
+</section><section id="variación-en-12-meses-de-los-ocupados-por-grupo-de-ocupación-2" class="slide level2">
+<h2>Variación en 12 meses de los ocupados por grupo de ocupación</h2>
+<p>Estima el cambio porcentual del número de ocupados, según grupo ocupacional (CIUO 08.cl) entre los trimestres JJA 2018 y JJA 2019</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tbl1 &lt;-
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">inner_join</span>(tbl1_<span class="dv">2018</span>, tbl1_<span class="dv">2019</span>, <span class="dt">by =</span> <span class="st">&quot;b1&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">delta =</span> <span class="dv">100</span> <span class="op">*</span><span class="st"> </span>(n.y <span class="op">-</span><span class="st"> </span>n.x) <span class="op">/</span><span class="st"> </span>n.x) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(<span class="kw">desc</span>(delta)) <span class="op">%&gt;%</span>
+<span class="st">  </span>haven<span class="op">::</span><span class="kw">as_factor</span>()</code></pre></div>
+<p>Convierte el resultado en un vector</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pcts &lt;-<span class="st"> </span><span class="kw">round</span>(tbl1<span class="op">$</span>delta, <span class="dv">1</span>)
+<span class="kw">names</span>(pcts) &lt;-<span class="st"> </span>tbl1<span class="op">$</span>b1</code></pre></div>
+</section><section id="participación-de-ocupados-según-grupo-ocupacional-2018-vs-2019" class="slide level2">
+<h2>Participación de ocupados, según grupo ocupacional, 2018 vs 2019</h2>
+<p>Estima la participación de ocupados (en %), según grupo ocupacional (CIUO 08.cl) para el trimestre junio-agosto 2019</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tbl2_<span class="dv">2019</span> &lt;-
+<span class="st">  </span>ene_jja[[<span class="st">&quot;2019&quot;</span>]] <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(activ, b1, fact) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(activ <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(b1) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">sum</span>(fact)) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(
+    <span class="dt">pct       =</span> <span class="dv">100</span> <span class="op">*</span><span class="st"> </span>n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n),
+    <span class="dt">trimestre =</span> <span class="st">&quot;junio-agosto 2019&quot;</span>
+  )</code></pre></div>
+</section><section id="participación-de-ocupados-según-grupo-ocupacional-2018-vs-2019-1" class="slide level2">
+<h2>Participación de ocupados, según grupo ocupacional, 2018 vs 2019</h2>
+<p>Estima la participación de ocupados (en %), según grupo ocupacional (CIUO 08.cl) para el trimestre junio-agosto 2018</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tbl2_<span class="dv">2018</span> &lt;-
+<span class="st">  </span>ene_jja[[<span class="st">&quot;2018&quot;</span>]] <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(activ, b1, fact) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(activ <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(b1) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">sum</span>(fact)) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(
+    <span class="dt">pct       =</span> <span class="dv">100</span> <span class="op">*</span><span class="st"> </span>n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n),
+    <span class="dt">trimestre =</span> <span class="st">&quot;junio-agosto 2018&quot;</span>
+  )</code></pre></div>
+</section><section id="participación-de-ocupados-según-grupo-ocupacional-2018-vs-2019-2" class="slide level2">
+<h2>Participación de ocupados, según grupo ocupacional, 2018 vs 2019</h2>
+<p>Combina la información en una tabla</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tbl2_3FN &lt;-
+<span class="st">  </span><span class="kw">rbind</span>(tbl2_<span class="dv">2018</span>, tbl2_<span class="dv">2019</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(b1, pct, trimestre) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(
+    <span class="dt">trimestre =</span> haven<span class="op">::</span><span class="kw">as_factor</span>(trimestre),
+    <span class="dt">b1        =</span> haven<span class="op">::</span><span class="kw">as_factor</span>(b1)
+  )</code></pre></div>
+</section><section id="participación-de-ocupados-según-grupo-ocupacional-2018-vs-2019-3" class="slide level2">
+<h2>Participación de ocupados, según grupo ocupacional, 2018 vs 2019</h2>
+<p>Crea el Gráfico 1</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tbl2_3FN <span class="op">%&gt;%</span>
+<span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(<span class="kw">aes</span>(stringr<span class="op">::</span><span class="kw">str_wrap</span>(b1, <span class="dv">25</span>), pct, <span class="dt">fill =</span> trimestre)) <span class="op">+</span>
+<span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span>
+<span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">coord_flip</span>() <span class="op">+</span>
+<span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;darkblue&quot;</span>, <span class="st">&quot;darkred&quot;</span>)) <span class="op">+</span>
+<span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">labs</span>(
+    <span class="dt">x        =</span> <span class="st">&quot;Grupo ocupacional (CIUO 08.cl)&quot;</span>,
+    <span class="dt">y        =</span> <span class="st">&quot;Participación (%)&quot;</span>,
+    <span class="dt">title    =</span> <span class="st">&quot;Gráfico 1. Participación de ocupados&quot;</span>,
+    <span class="dt">subtitle =</span> <span class="st">&quot;según grupo ocupacional (CIUO 08.cl)&quot;</span>,
+    <span class="dt">caption  =</span> <span class="st">&quot;Elaboración propia en base a datos de la ENE 2018/2019.&quot;</span>
+  )</code></pre></div>
+</section></section>
     </div>
   </div>
 

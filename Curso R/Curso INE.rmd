@@ -29,14 +29,7 @@ source("setup.R")
 
 # <br><br>Curso de R<br><small> <br><br> MiDaS</small>{ .center .white data-background="#75AADB" }
 
-## Programa del Curso
-
-- Introducción a `R`: Instalación, Interfaz y Operatoria básica.
-- Manipulación de bases de datos.
-- Análisis exploratorio y visualización.
-- Creación de reportes.
-
-# Introducción a R{ .center .white data-background="#75AADB" }
+# Introduccion a R{ .center .white data-background="#75AADB" }
 
 ## Descarga e Instalación
 
@@ -247,7 +240,13 @@ numeros <- read_excel('Datasets/numeros.xlsx')
 numeros
 ```
 
-## Ejemplo:
+## Ejemplo: submuestra.dta
+
+```{r}
+library(haven)
+submuestra <- read_dta("Datasets/submuestra ENE 2018 07 JJA.dta")
+head(submuestra)
+```
 
 
 ## filter(): *Seleccionar filas*
@@ -301,7 +300,7 @@ storms %>%
   arrange(wind)
 ```
 
-## arrange(): *Código de mayor a menor.*
+## arrange(): *Código de mayor a menor*
 
 ```{r}
 storms %>%
@@ -431,7 +430,7 @@ artist4
 left_join(songs,artist2, by = c("name" = "Nombres"))
 ```
 
-## gather: *Recolectar*
+## gather: *Reunir columnas*
 
 Coloca nombres de columnas en una variable (columna) __key__, recolectando los 
 valores (__value__) de las columnas en un __sola__ columna
@@ -724,4 +723,176 @@ length(unique(data$player_id))
 - Agregar el `theme:paper`, `toc:true` y `toc_float:true`. Comente lo ocurrido.
 - ¿Qué pasa si agrego la opción 'code_folding: show'?
 
-# Actividad Final
+# Ejemplo: Boletín Empleo Trimestral{ .center .white data-background="#75AADB" }
+
+## Descripción
+
+- El INE publica mensualmente un Boletín de Empleo Trimestral. 
+- En la página 3 de dicho informe, se presentan cifras relacionadas con la evolución de los ocupados según grupo ocupacional (CIUO.08). Específicamente:
+    1. La participación de los ocupados según grupo ocupacional.
+    2. El crecimiento porcentual del número de ocupados segùn grupo ocupacional.
+- El primer grupo de cifras se presenta como un gráfico, pero el grupo de cifras se presentan dentro del texto.
+- En este ejericicio final, explicaremos cómo reproducir este extracto del Boletín usando RMarkdown.
+
+## Crecimiento porcentual de los ocupados
+
+Cargamos los datos (también cargaremos datos del 2018):
+
+```{r}
+ene_jja <- list(
+  "2018" = haven::read_dta("Datasets/submuestra ENE 2018 07 JJA.dta"),
+  "2019" = haven::read_dta("Datasets/submuestra ENE 2019 07 JJA.dta")
+)
+```
+
+Estimamos el número de ocupados, para el trimestre junio-agosto 2018
+
+```{r}
+ocup_2018 <-
+  ene_jja[["2018"]] %>%
+  dplyr::filter(activ == 1) %>%
+  dplyr::summarise(n = sum(fact)) %>%
+  dplyr::pull(1)
+```
+
+----
+
+Estimamos el número de ocupados, para el trimestre junio-agosto 2019
+```{r}
+ocup_2019 <-
+  ene_jja[["2019"]] %>%
+  dplyr::filter(activ == 1) %>%
+  dplyr::summarise(n = sum(fact)) %>%
+  dplyr::pull(1)
+```
+
+Estimamos la variación porcentual en 12 meses del número de ocupados
+```{r}
+ocup_vp <- round(100 * (ocup_2019 - ocup_2018) / ocup_2019, 1)
+```
+
+----
+
+## Variación en 12 meses de los ocupados por grupo de ocupación
+
+Estima el número de ocupados, según grupo ocupacional (CIUO 08.cl) para el trimestre junio-agosto 2018
+
+```{r}
+tbl1_2018 <-
+  ene_jja[["2018"]] %>%
+  dplyr::select(activ, b1, fact) %>%
+  dplyr::filter(activ == 1) %>%
+  dplyr::group_by(b1) %>%
+  dplyr::summarise(n = sum(fact))
+```
+
+----
+
+## Variación en 12 meses de los ocupados por grupo de ocupación
+
+Estima el número de ocupados, según grupo ocupacional (CIUO 08.cl) para el trimestre junio-agosto 2019
+
+```{r}
+tbl1_2019 <-
+  ene_jja[["2019"]] %>%
+  dplyr::select(activ, b1, fact) %>%
+  dplyr::filter(activ == 1) %>%
+  dplyr::group_by(b1) %>%
+  dplyr::summarise(n = sum(fact))
+```
+
+----
+
+## Variación en 12 meses de los ocupados por grupo de ocupación
+
+Estima el cambio porcentual del número de ocupados, según grupo ocupacional (CIUO 08.cl) entre los trimestres JJA 2018 y JJA 2019
+
+```{r}
+tbl1 <-
+  dplyr::inner_join(tbl1_2018, tbl1_2019, by = "b1") %>%
+  dplyr::mutate(delta = 100 * (n.y - n.x) / n.x) %>%
+  dplyr::arrange(desc(delta)) %>%
+  haven::as_factor()
+```
+
+Convierte el resultado en un vector
+
+```{r}
+pcts <- round(tbl1$delta, 1)
+names(pcts) <- tbl1$b1
+```
+
+----
+
+## Participación de ocupados, según grupo ocupacional, 2018 vs 2019
+
+Estima la participación de ocupados (en %), según grupo ocupacional (CIUO 08.cl) para el trimestre junio-agosto 2019
+
+```{r}
+tbl2_2019 <-
+  ene_jja[["2019"]] %>%
+  dplyr::select(activ, b1, fact) %>%
+  dplyr::filter(activ == 1) %>%
+  dplyr::group_by(b1) %>%
+  dplyr::summarise(n = sum(fact)) %>%
+  dplyr::mutate(
+    pct       = 100 * n / sum(n),
+    trimestre = "junio-agosto 2019"
+  )
+```
+
+----
+
+## Participación de ocupados, según grupo ocupacional, 2018 vs 2019
+
+Estima la participación de ocupados (en %), según grupo ocupacional (CIUO 08.cl) para el trimestre junio-agosto 2018
+
+```{r}
+tbl2_2018 <-
+  ene_jja[["2018"]] %>%
+  dplyr::select(activ, b1, fact) %>%
+  dplyr::filter(activ == 1) %>%
+  dplyr::group_by(b1) %>%
+  dplyr::summarise(n = sum(fact)) %>%
+  dplyr::mutate(
+    pct       = 100 * n / sum(n),
+    trimestre = "junio-agosto 2018"
+  )
+```
+
+----
+
+## Participación de ocupados, según grupo ocupacional, 2018 vs 2019
+
+Combina la información en una tabla
+
+```{r}
+tbl2_3FN <-
+  rbind(tbl2_2018, tbl2_2019) %>%
+  dplyr::select(b1, pct, trimestre) %>%
+  dplyr::mutate(
+    trimestre = haven::as_factor(trimestre),
+    b1        = haven::as_factor(b1)
+  )
+```
+
+----
+
+## Participación de ocupados, según grupo ocupacional, 2018 vs 2019
+
+Crea el Gráfico 1
+
+```{r, eval=FALSE}
+tbl2_3FN %>%
+  ggplot2::ggplot(aes(stringr::str_wrap(b1, 25), pct, fill = trimestre)) +
+  ggplot2::geom_bar(position = "dodge", stat = "identity") +
+  ggplot2::coord_flip() +
+  ggplot2::scale_fill_manual(values = c("darkblue", "darkred")) +
+  ggplot2::labs(
+    x        = "Grupo ocupacional (CIUO 08.cl)",
+    y        = "Participación (%)",
+    title    = "Gráfico 1. Participación de ocupados",
+    subtitle = "según grupo ocupacional (CIUO 08.cl)",
+    caption  = "Elaboración propia en base a datos de la ENE 2018/2019."
+  )
+```
