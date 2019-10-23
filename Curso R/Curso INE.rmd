@@ -502,7 +502,7 @@ paises <- gapminder %>%
 paises
 ```
 
-## Creando un gráfico :)
+## Creando un gráfico
 
 ```{r, echo=TRUE,  fig.height = 4}
 ggplot(data = paises)
