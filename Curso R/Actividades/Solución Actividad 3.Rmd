@@ -1,6 +1,6 @@
 ---
 title: "Actividad Final"
-author: "Ingrese aquí el nombre de los integrantes del grupo"
+author: "MiDaS"
 output: 
   html_document:
     toc: true
@@ -9,7 +9,7 @@ output:
     highlight: tango
 ---
 
-<img src="logouccolor.jpg" style="position:absolute;top:0px;right:0px;" width="80" />
+<img src="Logo_midas.png" style="position:absolute;top:0px;right:0px;" width="80" />
 
 ---
 

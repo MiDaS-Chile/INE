@@ -16,7 +16,7 @@ En este [Curso](https://midas-chile.github.io/INE/Curso%20R/Curso-INE.html#/curs
 - [Manejo de base de datos.](https://midas-chile.github.io/INE/Curso%20R/Curso-INE.html#/manejo-de-base-de-datos)
 - [Análisis exploratorio y visualización de datos.](https://midas-chile.github.io/INE/Curso%20R/Curso-INE.html#/analisis-exploratorio-y-visualizacion-de-datos)
 - [Generación de reportes automatizables.](https://midas-chile.github.io/INE/Curso%20R/Curso-INE.html#/generacion-de-reportes-automatizables)
-- [Ejemplo: Boletín Empleo Trimestral.](https://midas-chile.github.io/INE/Curso R/Ejercicio Final/Reporte_INE.html#)
+- [Ejemplo: Boletín Empleo Trimestral.](https://midas-chile.github.io/INE/Curso%20R/Curso-INE.html#/ejemplo-boletin-empleo-trimestral)
   
 
 

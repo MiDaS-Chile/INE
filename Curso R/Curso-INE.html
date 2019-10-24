@@ -821,9 +821,9 @@ submuestra &lt;-<span class="st"> </span><span class="kw">read_dta</span>(<span 
 </section><section id="summarise-código" class="slide level2">
 <h2>summarise(): <em>Código</em></h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">storms <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(wind), <span class="dt">sd =</span> <span class="kw">sd</span>(wind))</code></pre></div>
-<pre><code>##       mean       sd
-## 1 59.16667 26.34704</code></pre>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">promedio =</span> <span class="kw">mean</span>(wind), desviación_<span class="dt">standard =</span> <span class="kw">sd</span>(wind))</code></pre></div>
+<pre><code>##   promedio desviación_standard
+## 1 59.16667            26.34704</code></pre>
 </section><section id="group_by-summarise-resumir-columnas-por-grupos" class="slide level2">
 <h2>group_by + summarise: <em>Resumir Columnas por Grupos</em></h2>
 <p>Group_by divide la base de datos en grupos, lo cual permite obtener medidas de resumen por grupos utilizando summarise.</p>
@@ -833,7 +833,7 @@ submuestra &lt;-<span class="st"> </span><span class="kw">read_dta</span>(<span 
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pollution &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/rstudio/EDAWR/master/data-raw/pollution.csv&quot;</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pollution <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">group_by</span>(city) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">promedio =</span> <span class="kw">median</span>(amount),
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">promedio =</span> <span class="kw">mean</span>(amount),
             <span class="dt">suma =</span> <span class="kw">sum</span>(amount),
             <span class="dt">n =</span> <span class="kw">n</span>(),
             <span class="dt">max =</span> <span class="kw">max</span>(amount))</code></pre></div>
@@ -858,31 +858,36 @@ pollution2</code></pre></div>
 ## 4   London small     16        0
 ## 5  Beijing large    121        1
 ## 6  Beijing small     56        1</code></pre>
-<table style="width:6%;">
-<colgroup>
-<col style="width: 5%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">Se pueden crear variables con más de 2 valores:</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;"><code>r pollution2 %&gt;% mutate(categorias = case_when( amount &gt;= 14 &amp; amount &lt; 24 ~ '[14,23]', amount &gt;= 24 &amp; amount &lt; 57 ~ '[24,56]', TRUE ~ '&gt;56' )) -&gt; pollution2 pollution2</code></td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;"><code>##       city  size amount mayor_30 categorias ## 1 New York large     23        0    [14,23] ## 2 New York small     14        0    [14,23] ## 3   London large     22        0    [14,23] ## 4   London small     16        0    [14,23] ## 5  Beijing large    121        1        &gt;56 ## 6  Beijing small     56        1    [24,56]</code></td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">## Importar datos</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;"><code>r songs &lt;- read_csv(&quot;Datasets/songs.csv&quot;) songs</code></td>
-</tr>
-<tr class="even">
-<td style="text-align: right;"><code>## # A tibble: 4 x 2 ##   song                name ##   &lt;chr&gt;               &lt;chr&gt; ## 1 Across the Universe John ## 2 Come Together       John ## 3 Hello, Goodbye      Paul ## 4 Peggy Sue           Buddy</code></td>
-</tr>
-</tbody>
-</table>
+</section><section class="slide level2">
+
+<p>Se pueden crear variables con más de 2 valores:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pollution2 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">categorias =</span> <span class="kw">case_when</span>(
+    amount <span class="op">&gt;=</span><span class="st"> </span><span class="dv">14</span> <span class="op">&amp;</span><span class="st"> </span>amount <span class="op">&lt;</span><span class="st"> </span><span class="dv">24</span> <span class="op">~</span><span class="st"> &#39;[14,23]&#39;</span>,
+    amount <span class="op">&gt;=</span><span class="st"> </span><span class="dv">24</span> <span class="op">&amp;</span><span class="st"> </span>amount <span class="op">&lt;</span><span class="st"> </span><span class="dv">57</span> <span class="op">~</span><span class="st"> &#39;[24,56]&#39;</span>,
+    <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> &#39;&gt;56&#39;</span>
+  )) -&gt;<span class="st"> </span>pollution2
+pollution2</code></pre></div>
+<pre><code>##       city  size amount mayor_30 categorias
+## 1 New York large     23        0    [14,23]
+## 2 New York small     14        0    [14,23]
+## 3   London large     22        0    [14,23]
+## 4   London small     16        0    [14,23]
+## 5  Beijing large    121        1        &gt;56
+## 6  Beijing small     56        1    [24,56]</code></pre>
+</section><section id="importar-datos" class="slide level2">
+<h2>Importar datos</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">songs &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;Datasets/songs.csv&quot;</span>)
+songs</code></pre></div>
+<pre><code>## # A tibble: 4 x 2
+##   song                name 
+##   &lt;chr&gt;               &lt;chr&gt;
+## 1 Across the Universe John 
+## 2 Come Together       John 
+## 3 Hello, Goodbye      Paul 
+## 4 Peggy Sue           Buddy</code></pre>
+</section><section class="slide level2">
+
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">artists &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;Datasets/artists.csv&quot;</span>)
 artists</code></pre></div>
 <pre><code>## # A tibble: 4 x 2
@@ -1239,7 +1244,7 @@ p3&lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">
 <li class="fragment">¿Qué pasa si agrego la opción ‘code_folding: show’?</li>
 </ul>
 </section></section>
-<section><section id="ejemplo-boletín-empleo-trimestral" class="titleslide slide level1 center white" data-background="#75AADB"><h1>Ejemplo: Boletín Empleo Trimestral</h1></section><section id="descripción" class="slide level2">
+<section><section id="ejemplo-boletin-empleo-trimestral" class="titleslide slide level1 center white" data-background="#75AADB"><h1>Ejemplo: Boletin Empleo Trimestral</h1></section><section id="descripción" class="slide level2">
 <h2>Descripción</h2>
 <ul>
 <li class="fragment">El INE publica mensualmente un Boletín de Empleo Trimestral.</li>

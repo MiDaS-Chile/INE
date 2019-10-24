@@ -329,7 +329,7 @@ Permite aplicar funciones de resumen en las columnas de una BD.
 ## summarise(): *Código*
 ```{r}
 storms %>% 
-  summarise(mean = mean(wind), sd = sd(wind))
+  summarise(promedio = mean(wind), desviación_standard = sd(wind))
 ```
 
 ## group_by + summarise: *Resumir Columnas por Grupos*
@@ -347,7 +347,7 @@ pollution <- read.csv("https://raw.githubusercontent.com/rstudio/EDAWR/master/da
 ```{r}
 pollution %>%
   group_by(city) %>%
-  summarise(promedio = median(amount),
+  summarise(promedio = mean(amount),
             suma = sum(amount),
             n = n(),
             max = max(amount))
@@ -364,8 +364,10 @@ pollution %>%
     TRUE ~ 0)) -> pollution2
 pollution2
 ```
+
 ----
-  Se pueden crear variables con más de 2 valores:
+
+Se pueden crear variables con más de 2 valores:
   
 ```{r}
 pollution2 %>% 
@@ -723,7 +725,7 @@ length(unique(data$player_id))
 - Agregar el `theme:paper`, `toc:true` y `toc_float:true`. Comente lo ocurrido.
 - ¿Qué pasa si agrego la opción 'code_folding: show'?
 
-# Ejemplo: Boletín Empleo Trimestral{ .center .white data-background="#75AADB" }
+# Ejemplo: Boletin Empleo Trimestral{ .center .white data-background="#75AADB" }
 
 ## Descripción
 
